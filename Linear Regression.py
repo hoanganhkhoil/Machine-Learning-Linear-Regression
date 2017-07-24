@@ -22,11 +22,13 @@ def create_data(size, variance, step=2):
 
     return np.array(xs, dtype=np.float64), np.array(ys, dtype=np.float64)
 
+# Find slope (m) and intercept (b)
 def best_fit_slope_and_intercept(xs,ys):
     m = (mean(xs) * mean(ys) - mean(xs * ys)) / (mean(xs)**2 - mean(xs**2))
     b = mean(ys) - m * mean(xs)
     return m,b
 
+# Find square error
 def squared_error(ys_original, ys_line):
     return sum((ys_line - ys_original)**2)
 
@@ -47,8 +49,9 @@ prediction_line = (m*xs)+b  # same size as ys
 
 r_squared = coefficient_of_determination(ys, prediction_line)
 
-print r_squared
+print (r_squared)
 
+# Visualize the graph
 plt.scatter(xs,ys)
 plt.plot(xs,prediction_line)
 plt.show()
